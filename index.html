@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OLiVES: An Outdoor Low-Light Video Benchmark for Enhancement and Segmentation</title>
+  <meta name="description" content="OLiVES is the first outdoor low-light video benchmark captured with cinema-grade cameras, providing 25,254 aligned normal/low-light frame pairs and 46,366 video object segmentation annotations for joint LLVE and VOS tasks.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    body, .title, .subtitle, .button, .stat-card .stat-number, .stat-card .stat-label, h1, h2, h3, h4, h5, h6, p, span, a, td, th, li, pre {
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+    }
+    .publication-title { font-weight: 700; margin-top: 4rem; }
+    .hero.is-light { background-color: #ffffff; }
+    .author-block { font-weight: 300; margin-right: 0.5rem; }
+    .publication-authors a,
+    .publication-authors a:link,
+    .publication-authors a:visited { color: #2a7ac9 !important; }
+    .publication-authors a:hover { color: #0d4f8b !important; text-decoration: underline; }
+    .publication-links { margin-top: 2rem; }
+    .publication-links .link-block { margin: 0.25rem; display: inline-block; }
+    .publication-links .button { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .stat-card { text-align: center; padding: 1.25rem 0.5rem; border-radius: 8px; background-color: #fafafa; }
+    .stat-card .stat-number { font-family: 'Google Sans', sans-serif; font-size: 2rem; font-weight: 700; color: #363636; }
+    .stat-card .stat-label { color: #6b6b6b; margin-top: 0.25rem; font-size: 0.95rem; }
+    .ours-row { background-color: #fff7e6 !important; font-weight: 600; }
+    .figure-placeholder { border: 1px dashed #c8c8c8; border-radius: 6px; padding: 3rem 1rem; text-align: center; color: #9a9a9a; background-color: #fafafa; }
+    pre.bibtex { background-color: #f5f5f5; padding: 1.25rem; border-radius: 6px; overflow-x: auto; font-size: 0.9rem; }
+    .section { padding: 2.5rem 1.5rem; }
+    .footer { padding: 2.5rem 1.5rem; }
+  </style>
+</head>
+<body>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-2 publication-title">OLiVES: An Outdoor Low-Light Video Benchmark<br>for Enhancement and Segmentation</h1>
+
+      <div class="is-size-4 publication-authors" style="margin-top: 2rem;">
+        <span class="author-block">Anonymous Authors</span>
+      </div>
+
+      <div class="is-size-5 publication-authors" style="margin-top: 1rem;">
+        <!-- TODO: add affiliation 2, e.g. <span class="author-block"><sup>2</sup>Affiliation Two</span> -->
+      </div>
+
+      <div class="is-size-6 publication-authors" style="margin-top: 0.5rem; ">
+        <!-- <span><sup>*</sup>Equal contribution</span> -->
+      </div>
+
+      <div class="publication-links">
+        <!-- TODO: paste arXiv URL into href -->
+        <span class="link-block">
+          <a href="#" class="button is-dark is-rounded">
+            <span class="icon"><i class="ai ai-arxiv"></i></span>
+            <span>arXiv</span>
+          </a>
+        </span>
+        <!-- TODO: paste GitHub repo URL into href -->
+        <span class="link-block">
+          <a href="#" class="button is-dark is-rounded">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>Code</span>
+          </a>
+        </span>
+        <!-- TODO: paste dataset download URL into href -->
+        <span class="link-block">
+          <a href="#" class="button is-dark is-rounded">
+            <span class="icon"><i class="fas fa-database"></i></span>
+            <span>Dataset</span>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <img src="images/olives_example.jpg" alt="OLiVES dataset examples">
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Abstract</h2>
+    <div class="content has-text-justified">
+      <p>
+        Low-light videos remain an underexplored domain in computer vision research despite their necessity, primarily due to the lack of ground-truth data. While several public datasets exist for low-light video tasks, they suffer from many limitations including restricted motion, few scenes, mild degradations, dependence on event data, and misalignment with ground truth. Furthermore, most existing datasets are designed for only one computer vision task (e.g. low-light video enhancement, object tracking, video semantic segmentation, video object segmentation).
+      </p>
+      <p>
+        We introduce <strong>OLiVES</strong>, a benchmark dataset for outdoor scenes with moving objects, designed for joint <em>low-light video enhancement</em> (LLVE) and <em>video object segmentation</em> (VOS) tasks. We address the content gaps in existing datasets by incorporating a broader range of natural textures, animals, occlusions, dynamic content, and close-up scenes. To the best of our knowledge, OLiVES is the first outdoor low-light video dataset captured with professional cinema-grade cameras. The dataset provides <strong>25,254 aligned normal/low-light frame pairs</strong> and over <strong>46,000 VOS annotations</strong>. We show that training on OLiVES improves performance on both tasks against other publicly-available benchmarks.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Dataset at a Glance</h2>
+    <div class="columns is-multiline" style="margin-top: 1rem;">
+      <div class="column is-3">
+        <div class="stat-card">
+          <div class="stat-number">25,254</div>
+          <div class="stat-label">Aligned normal/low-light frame pairs</div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="stat-card">
+          <div class="stat-number">46,366</div>
+          <div class="stat-label">VOS pixel-wise annotations</div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="stat-card">
+          <div class="stat-number">137</div>
+          <div class="stat-label">Outdoor video sequences</div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="stat-card">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Object categories</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content has-text-justified" style="margin-top: 1.5rem;">
+      <p>
+        OLiVES is captured outdoors with professional cinema-grade cameras at <strong>1920&times;1080</strong> resolution and 25&nbsp;fps. We deliberately film scenes with rich and diverse object motion, including wildlife in open zoo enclosures (<em>lemur, gelada, meerkat, giraffe, zebra</em>), as well as everyday outdoor content with pedestrians, vehicles, boats, balls, and flapping flags. The VOS benchmark covers <strong>10 categories</strong>: <em>person, giraffe, zebra, monkey, meerkat, lemur, boat, car, flag, ball</em>, with annotations spanning 330 video clips split 80/10/10 into train, validation, and test sets.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Capture System</h2>
+    <div class="content has-text-justified">
+      <p>
+        To ensure consistent motion between low-light and ground-truth videos, we built a <strong>dual-exposure camera system</strong>. Two RED V-RAPTOR cameras with Zeiss Prime lenses are mounted side-by-side on a Hawk rig, and a Harrier beam splitter divides the incoming light evenly between two optical paths. Neutral Density (ND) filters &mdash; Formatt Hitech Firecrest <strong>1.2, 1.5, and 1.8</strong> (transmittance ratios 1/16, 1/32, 1/64) &mdash; are inserted into one path to simulate three low-light levels, while the other path provides the corresponding normal-light reference. Both cameras are synchronised by a Genlock timecode system for precise temporal alignment.
+      </p>
+      <p>
+        We follow professional cinematography practice: ISO 800, 25&nbsp;fps, F8 aperture, 1/100s shutter. RAW captures are converted to RGB via REDCINE-X PRO at 4096&times;2160 and cropped to 1920&times;1080 regions of interest. A finetuned <a href="https://github.com/Parskatt/RoMa">RoMa</a> dense matcher provides residual spatial-temporal registration without altering the low-light frames.
+      </p>
+    </div>
+    <img src="images/olives_capture_diagram.jpg" style="width:80%;; display:block; margin:auto;">
+  </div>
+</section>
+
+<section class="section" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Comparison with Prior Datasets</h2>
+
+    <h3 class="title is-5" style="margin-top: 1.5rem;">Low-Light Video Enhancement Datasets</h3>
+    <div class="table-container">
+      <table class="table is-striped is-fullwidth is-narrow">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Modality</th>
+            <th>Frames</th>
+            <th>Cam. motion</th>
+            <th>Obj. motion</th>
+            <th>Resolution</th>
+            <th>VOS ann.</th>
+            <th>Device</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>DRV</td><td>Raw</td><td>22,220</td><td>Static</td><td>Static</td><td>5496&times;3672</td><td>&#10007;</td><td>Sony RX100 VI</td></tr>
+          <tr><td>SDSD</td><td>RGB</td><td>37,500</td><td>Dynamic</td><td>Static</td><td>1920&times;1080</td><td>&#10007;</td><td>Canon 6D Mark II</td></tr>
+          <tr><td>LLRVD</td><td>Raw</td><td>4,086</td><td>Dynamic</td><td>Dynamic</td><td>2600&times;1400</td><td>&#10007;</td><td>Sony &alpha;7R IV</td></tr>
+          <tr><td>BVI-RLV</td><td>RGB</td><td>31,800</td><td>Dynamic</td><td>Static</td><td>1920&times;1080</td><td>&#10007;</td><td>Sony &alpha;7S II</td></tr>
+          <tr><td>SDE</td><td>RGB / Event</td><td>31,477</td><td>Dynamic</td><td>Static</td><td>346&times;260</td><td>&#10007;</td><td>DAVIS 346</td></tr>
+          <tr><td>DID</td><td>RGB</td><td>41,038</td><td>Dynamic</td><td>Static</td><td>2560&times;1440</td><td>&#10007;</td><td>5 camera models</td></tr>
+          <tr class="ours-row"><td>OLiVES (Ours)</td><td>RGB</td><td>25,254</td><td>Dynamic</td><td>Dynamic</td><td>1920&times;1080</td><td>&#10003;</td><td>RED V-RAPTOR</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title is-5" style="margin-top: 2rem;">Video Object Segmentation Datasets</h3>
+    <div class="table-container">
+      <table class="table is-striped is-fullwidth is-narrow">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Light</th>
+            <th>Frames</th>
+            <th>Categories</th>
+            <th>Objects</th>
+            <th>Annotations</th>
+            <th>New objects?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>DAVIS 2016</td><td>Normal</td><td>3,440</td><td>&mdash;</td><td>50</td><td>3,455</td><td>&#10007;</td></tr>
+          <tr><td>DAVIS 2017</td><td>Normal</td><td>6,208</td><td>&mdash;</td><td>205</td><td>13,543</td><td>&#10007;</td></tr>
+          <tr><td>YouTube-VOS</td><td>Normal</td><td>120,532</td><td>94</td><td>7,755</td><td>197,272</td><td>&#10003;</td></tr>
+          <tr><td>MOSEv1</td><td>Normal</td><td>130,149</td><td>36</td><td>5,200</td><td>431,725</td><td>&#10007;</td></tr>
+          <tr><td>MOSEv2</td><td>Mixed</td><td>468,251</td><td>200</td><td>10,074</td><td>701,976</td><td>&#10007;</td></tr>
+          <tr><td>LLE-VOS</td><td>Low</td><td>5,600</td><td>&mdash;</td><td>120</td><td>9,606</td><td>&#10007;</td></tr>
+          <tr class="ours-row"><td>OLiVES (Ours)</td><td>Low</td><td>22,893</td><td>10</td><td>715</td><td>46,366</td><td>&#10003;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Benchmarks</h2>
+
+    <h3 class="title is-5" style="margin-top: 1.5rem;">Low-Light Video Enhancement</h3>
+    <div class="content has-text-justified">
+      <p>
+        We benchmark a wide range of state-of-the-art LLIE and LLVE methods, including supervised methods (SNR-aware, LLFlow, Retinexformer, SDSD-Net, StableLLVE, DP3DF, FastLLVE, BVI-CDM, BVI-Mamba, LLVE-STCD), unpaired methods (LightenDiffusion), and unsupervised methods (Wakeup-darkness, SGZSL, Zero-TIG, TempRetinex). Image quality is evaluated with <strong>PSNR</strong>, <strong>SSIM</strong>, and <strong>LPIPS</strong>; temporal consistency is evaluated with <strong>tLPIPS</strong>, <strong>Warping Error</strong>, and <strong>VMAF</strong>.
+      </p>
+    </div>
+    <!-- TODO: replace with LLVE qualitative comparison figure -->
+    <figure class="image">
+      <div class="figure-placeholder">Figure: LLVE qualitative comparisons on OLiVES</div>
+    </figure>
+
+    <h3 class="title is-5" style="margin-top: 2rem;">Video Object Segmentation</h3>
+    <div class="content has-text-justified">
+      <p>
+        We benchmark recent semi-supervised VOS methods including <strong>STCN</strong>, <strong>AOT</strong>, <strong>De-AOT</strong>, <strong>XMem</strong>, <strong>Cutie</strong>, and <strong>OASIS</strong>, evaluated with the standard <strong>J</strong>, <strong>F</strong>, and <strong>J&amp;F</strong> metrics. Models are first trained on the unrefined train split with their original settings, then finetuned on the manually refined subset for 20K iterations. Training on OLiVES improves performance over off-the-shelf weights trained on DAVIS&nbsp;17 + YouTube-VOS&nbsp;2019 and MOSE.
+      </p>
+    </div>
+    <!-- TODO: replace with VOS qualitative comparison figure -->
+    <figure class="image">
+      <div class="figure-placeholder">Figure: VOS qualitative comparisons on OLiVES</div>
+    </figure>
+  </div>
+</section>
+
+<section class="section" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+    <!-- TODO: replace with the final citation once accepted -->
+    <pre class="bibtex">@inproceedings{olives2026,
+  title     = {OLiVES: An Outdoor Low-Light Video Benchmark for Enhancement and Segmentation},
+  author    = {Anonymous},
+  booktitle = {Anonymous},
+  year      = {2026}
+}</pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container is-max-desktop has-text-centered">
+    <p class="is-size-7">
+      Website template adapted from the
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>,
+      itself based on the <a href="https://nerfies.github.io">Nerfies</a> project page.
+      Released under
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
