@@ -33,6 +33,11 @@
     .ours-row { background-color: #fff7e6 !important; font-weight: 600; }
     .figure-placeholder { border: 1px dashed #c8c8c8; border-radius: 6px; padding: 3rem 1rem; text-align: center; color: #9a9a9a; background-color: #fafafa; }
     pre.bibtex { background-color: #f5f5f5; padding: 1.25rem; border-radius: 6px; overflow-x: auto; font-size: 0.9rem; }
+    .benchmark-table tbody.group-divider tr:first-child td { border-top: 2px solid #b5b5b5; }
+    .benchmark-table th, .benchmark-table td { vertical-align: middle; }
+    .benchmark-table u { text-decoration: underline; text-underline-offset: 2px; }
+    .benchmark-table, .benchmark-table tbody, .benchmark-table thead, .benchmark-table tr, .benchmark-table th, .benchmark-table td { background-color: transparent !important; }
+    .table-wrap { background-color: #fafafa; padding: 1.25rem; border-radius: 6px; }
     .section { padding: 2.5rem 1.5rem; }
     .footer { padding: 2.5rem 1.5rem; }
   </style>
@@ -49,7 +54,6 @@
       </div>
 
       <div class="is-size-5 publication-authors" style="margin-top: 1rem;">
-        <!-- TODO: add affiliation 2, e.g. <span class="author-block"><sup>2</sup>Affiliation Two</span> -->
       </div>
 
       <div class="is-size-6 publication-authors" style="margin-top: 0.5rem; ">
@@ -225,10 +229,53 @@
         We benchmark a wide range of state-of-the-art LLIE and LLVE methods, including supervised methods (SNR-aware, LLFlow, Retinexformer, SDSD-Net, StableLLVE, DP3DF, FastLLVE, BVI-CDM, BVI-Mamba, LLVE-STCD), unpaired methods (LightenDiffusion), and unsupervised methods (Wakeup-darkness, SGZSL, Zero-TIG, TempRetinex). Image quality is evaluated with <strong>PSNR</strong>, <strong>SSIM</strong>, and <strong>LPIPS</strong>; temporal consistency is evaluated with <strong>tLPIPS</strong>, <strong>Warping Error</strong>, and <strong>VMAF</strong>.
       </p>
     </div>
-    <!-- TODO: replace with LLVE qualitative comparison figure -->
-    <figure class="image">
-      <div class="figure-placeholder">Figure: LLVE qualitative comparisons on OLiVES</div>
-    </figure>
+    <div class="table-wrap">
+    <div class="table-container">
+    <p class="has-text-centered is-size-6" style="margin-top: 0rem; color: #6b6b6b;">
+      <strong>Table&nbsp;4.</strong> Benchmarking on OLiVES dataset across recent LLVE and LLIE SOTA methods. <strong>Bold</strong> and <u>underline</u> denote the best and second-best performances among all methods respectively.
+    </p>
+      <table class="table is-fullwidth is-narrow is-hoverable benchmark-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Venue</th>
+            <th>Type</th>
+            <th>Data</th>
+            <th>PSNR&nbsp;&uarr;</th>
+            <th>SSIM&nbsp;&uarr;</th>
+            <th>LPIPS&nbsp;&darr;</th>
+            <th>tLPIPS&nbsp;&darr;<br><span class="is-size-7">&times;10<sup>&minus;2</sup></span></th>
+            <th>WE&nbsp;&darr;<br><span class="is-size-7">&times;10<sup>&minus;2</sup></span></th>
+            <th>VMAF&nbsp;&uarr;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>SNR-aware</td><td>CVPR'22</td><td>S</td><td>I</td><td>26.20</td><td>0.835</td><td>0.268</td><td>6.47</td><td>5.97</td><td>73.51</td></tr>
+          <tr><td>LLFlow</td><td>AAAI'22</td><td>S</td><td>I</td><td>21.65</td><td><u>0.862</u></td><td><strong>0.219</strong></td><td>2.82</td><td><u>3.81</u></td><td>69.50</td></tr>
+          <tr><td>Retinexformer</td><td>ICCV'23</td><td>S</td><td>I</td><td><strong>27.65</strong></td><td>0.834</td><td>0.241</td><td>6.35</td><td>5.41</td><td><strong>76.93</strong></td></tr>
+          <tr><td>LightenDiffusion</td><td>ECCV'24</td><td>UP</td><td>I</td><td>20.32</td><td>0.741</td><td>0.380</td><td>8.70</td><td>5.56</td><td>54.36</td></tr>
+          <tr><td>Wakeup-darkness</td><td>ACM TOMM'25</td><td>US</td><td>I</td><td>17.46</td><td>0.534</td><td>0.630</td><td>8.82</td><td>9.26</td><td>71.39</td></tr>
+        </tbody>
+        <tbody class="group-divider">
+          <tr><td>SGZSL</td><td>WACV'22</td><td>US</td><td>V</td><td>16.61</td><td>0.527</td><td>0.693</td><td>10.70</td><td>11.80</td><td><u>74.74</u></td></tr>
+          <tr><td>Zero-TIG</td><td>EUSIPCO'25</td><td>US</td><td>V</td><td>19.25</td><td>0.767</td><td>0.392</td><td>4.66</td><td>6.06</td><td>63.88</td></tr>
+          <tr><td>TempRetinex</td><td>ICME'26</td><td>US</td><td>V</td><td>19.66</td><td>0.723</td><td>0.402</td><td>5.21</td><td><strong>2.68</strong></td><td>62.63</td></tr>
+        </tbody>
+        <tbody class="group-divider">
+          <tr><td>SDSD-Net</td><td>ICCV'21</td><td>S</td><td>V</td><td>22.59</td><td>0.716</td><td>0.322</td><td>6.00</td><td>7.58</td><td>65.15</td></tr>
+          <tr><td>StableLLVE</td><td>CVPR'21</td><td>S</td><td>V</td><td>22.60</td><td>0.851</td><td>0.300</td><td>2.80</td><td>4.48</td><td>49.35</td></tr>
+          <tr><td>DP3DF</td><td>AAAI'23</td><td>S</td><td>V</td><td>23.22</td><td>0.781</td><td>0.325</td><td>6.22</td><td>6.57</td><td>37.37</td></tr>
+          <tr><td>FastLLVE</td><td>ACM MM'23</td><td>S</td><td>V</td><td>25.87</td><td>0.800</td><td>0.309</td><td>4.97</td><td>6.88</td><td>73.01</td></tr>
+          <tr><td>BVI-CDM</td><td>CVMP'24</td><td>S</td><td>V</td><td>26.40</td><td>0.854</td><td>0.326</td><td><strong>1.67</strong></td><td>3.90</td><td>56.03</td></tr>
+          <tr><td>BVI-Mamba</td><td>MLCD'25</td><td>S</td><td>V</td><td>25.66</td><td><strong>0.884</strong></td><td><u>0.228</u></td><td><u>1.92</u></td><td>3.97</td><td>71.14</td></tr>
+          <tr><td>LLVE-STCD</td><td>IJCAI'25</td><td>S</td><td>V</td><td><u>27.00</u></td><td>0.827</td><td>0.255</td><td>5.75</td><td>5.34</td><td>74.70</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="is-size-7" style="color: #6b6b6b; margin: 0.25rem 0 0 0;">
+      <strong>S</strong>: Supervised, <strong>US</strong>: Unsupervised, <strong>UP</strong>: Unpaired. <strong>I</strong>: Image, <strong>V</strong>: Video. <strong>WE</strong>: Warp Error.
+    </p>
+    </div>
 
     <h3 class="title is-5" style="margin-top: 2rem;">Video Object Segmentation</h3>
     <div class="content has-text-justified">
