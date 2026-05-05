@@ -57,7 +57,6 @@
       </div>
 
       <div class="is-size-6 publication-authors" style="margin-top: 0.5rem; ">
-        <!-- <span><sup>*</sup>Equal contribution</span> -->
       </div>
 
       <div class="publication-links">
@@ -70,7 +69,7 @@
         </span>
         <!-- TODO: paste GitHub repo URL into href -->
         <span class="link-block">
-          <a href="https://github.com/anonymous-OLiVES/RoMa_Finetune4OLiVES" target="blank" class="button is-dark is-rounded">
+          <a href="#" class="button is-dark is-rounded">
             <span class="icon"><i class="fab fa-github"></i></span>
             <span>Code</span>
           </a>
@@ -153,7 +152,7 @@
         To ensure consistent motion between low-light and ground-truth videos, we built a <strong>dual-exposure camera system</strong>. Two RED V-RAPTOR cameras with Zeiss Prime lenses are mounted side-by-side on a Hawk rig, and a Harrier beam splitter divides the incoming light evenly between two optical paths. Neutral Density (ND) filters &mdash; Formatt Hitech Firecrest <strong>1.2, 1.5, and 1.8</strong> (transmittance ratios 1/16, 1/32, 1/64) &mdash; are inserted into one path to simulate three low-light levels, while the other path provides the corresponding normal-light reference. Both cameras are synchronised by a Genlock timecode system for precise temporal alignment.
       </p>
       <p>
-        We follow professional cinematography practice: ISO 800, 25&nbsp;fps, F8 aperture, 1/100s shutter. RAW captures are converted to RGB via REDCINE-X PRO at 4096&times;2160 and cropped to 1920&times;1080 regions of interest. A   <a href="https://github.com/anonymous-OLiVES/RoMa_Finetune4OLiVES" target="blank">finetuned RoMa</a> dense matcher provides residual spatial-temporal registration without altering the low-light frames. 
+        We follow professional cinematography practice: ISO 800, 25&nbsp;fps, F8 aperture, 1/100s shutter. RAW captures are converted to RGB via REDCINE-X PRO at 4096&times;2160 and cropped to 1920&times;1080 regions of interest. A finetuned <a href="https://github.com/Parskatt/RoMa">RoMa</a> dense matcher provides residual spatial-temporal registration without altering the low-light frames.
       </p>
     </div>
     <img src="images/olives_capture_diagram.jpg" style="width:80%;; display:block; margin:auto;">
@@ -282,13 +281,81 @@
     <h3 class="title is-5" style="margin-top: 2rem;">Video Object Segmentation</h3>
     <div class="content has-text-justified">
       <p>
-        We benchmark recent semi-supervised VOS methods including <strong>STCN</strong>, <strong>AOT</strong>, <strong>De-AOT</strong>, <strong>XMem</strong>, <strong>Cutie</strong>, and <strong>OASIS</strong>, evaluated with the standard <strong>J</strong>, <strong>F</strong>, and <strong>J&amp;F</strong> metrics. Models are first trained on the unrefined train split with their original settings, then finetuned on the manually refined subset for 20K iterations. Training on OLiVES improves performance over off-the-shelf weights trained on DAVIS&nbsp;17 + YouTube-VOS&nbsp;2019 and MOSE.
+        We benchmark recent semi-supervised VOS methods including <strong>STCN</strong>, <strong>AOT</strong>, <strong>De-AOT</strong>, <strong>XMem</strong>, and <strong>Cutie</strong>, evaluated with the standard <strong>J</strong>, <strong>F</strong>, and <strong>J&amp;F</strong> metrics. Each model is finetuned on our train set for 30,000 iterations with batch size 8 and learning rate 1&times;10<sup>&minus;4</sup>, starting from the off-the-shelf weights trained on DAVIS&nbsp;2017 and YouTube-VOS. We also evaluate on the LLE-VOS validation set to demonstrate the generalisation of our training data across low-light benchmarks.
       </p>
     </div>
-    <!-- TODO: replace with VOS qualitative comparison figure -->
-    <figure class="image">
-      <div class="figure-placeholder">Figure: VOS qualitative comparisons on OLiVES</div>
-    </figure>
+
+    <div class="table-wrap">
+    <div class="table-container">
+    <p class="has-text-centered is-size-5" style="margin-top: 0rem; color: #6b6b6b;">
+      <strong>Benchmark of SOTA VOS methods trained on the OLiVES dataset.</strong>  
+    </p>
+    <p class="has-text-centered is-size-6" style="margin-bottom: 1rem; color: #6b6b6b;">
+       <strong>Bold</strong> and <u>underline</u> denote the best and second-best performances respectively.
+    </p>
+      <table class="table is-fullwidth is-narrow is-hoverable benchmark-table">
+        <thead>
+          <tr>
+            <th rowspan="2">Method</th>
+            <th rowspan="2">Venue</th>
+            <th colspan="3" class="has-text-centered">OLiVES val</th>
+            <th colspan="3" class="has-text-centered">OLiVES test</th>
+            <th colspan="3" class="has-text-centered">LLE-VOS val</th>
+          </tr>
+          <tr>
+            <th>J&amp;F</th><th>J</th><th>F</th>
+            <th>J&amp;F</th><th>J</th><th>F</th>
+            <th>J&amp;F</th><th>J</th><th>F</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>STCN</td><td>NeurIPS'21</td><td>90.7</td><td>87.2</td><td>94.2</td><td>91.1</td><td>87.3</td><td>94.9</td><td>35.3</td><td>41.2</td><td>29.4</td></tr>
+          <tr><td>AOT</td><td>NeurIPS'21</td><td>93.1</td><td>89.0</td><td><u>97.1</u></td><td>90.3</td><td>86.4</td><td>94.3</td><td>54.3</td><td>56.7</td><td>51.8</td></tr>
+          <tr><td>De-AOT</td><td>NeurIPS'22</td><td><u>93.3</u></td><td><u>89.3</u></td><td><strong>97.4</strong></td><td>91.0</td><td>86.7</td><td>95.3</td><td><strong>63.4</strong></td><td><strong>66.3</strong></td><td><strong>60.4</strong></td></tr>
+          <tr><td>XMem</td><td>ECCV'22</td><td>90.8</td><td>87.2</td><td>94.5</td><td><u>91.3</u></td><td>87.3</td><td>95.3</td><td>60.6</td><td>63.2</td><td>58.0</td></tr>
+          <tr><td>Cutie</td><td>CVPR'24</td><td><strong>93.8</strong></td><td><strong>90.9</strong></td><td>96.7</td><td><strong>93.9</strong></td><td><strong>91.1</strong></td><td><strong>96.7</strong></td><td><u>62.8</u></td><td><u>66.0</u></td><td><u>59.5</u></td></tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Two-Stage Pipeline: LLVE&nbsp;+&nbsp;VOS</h2>
+    <div class="content has-text-justified">
+      <p>
+        We further evaluate the VOS performance of LLVE methods trained on OLiVES within a <strong>two-stage pipeline</strong>, where enhancement is applied as a pre-processing step before inference with a pre-trained VOS model. We use <strong>Cutie</strong> with off-the-shelf weights for segmentation after enhancement. Evaluation on the LLE-VOS validation set assesses the effectiveness of our training data for LLVE: every LLVE model trained on OLiVES yields a clear improvement over the Cutie-only baseline, demonstrating that OLiVES enhancement transfers across datasets.
+      </p>
+    </div>
+
+    <div class="table-wrap">
+    <div class="table-container">
+    <p class="has-text-centered is-size-5" style="margin-bottom: 0rem; color: #6b6b6b;">
+      <strong>Quantitative results of two-stage methods on the LLE-VOS validation set, using LLVE methods trained on OLiVES followed by pre-trained Cutie.</strong> 
+    </p>
+    <p class="has-text-centered is-size-6" style="margin-bottom: 1rem; color: #6b6b6b;">
+      <strong>Bold</strong> and <u>underline</u> denote the best and second-best performances respectively.
+    </p>
+      <table class="table is-fullwidth is-narrow is-hoverable benchmark-table">
+        <thead>
+          <tr>
+            <th>LLVE Method</th>
+            <th>J&amp;F</th>
+            <th>J</th>
+            <th>F</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Cutie (off-the-shelf)</td><td>53.2</td><td>58.5</td><td>48.0</td></tr>
+          <tr><td>LLVE-STCD + Cutie</td><td>57.9</td><td><strong>62.1</strong></td><td><u>53.8</u></td></tr>
+          <tr><td>BVI-Mamba + Cutie</td><td><u>58.1</u></td><td><u>62.0</u></td><td><u>53.8</u></td></tr>
+          <tr><td>RetinexFormer + Cutie</td><td><strong>58.3</strong></td><td>61.9</td><td><strong>54.6</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
   </div>
 </section>
 
