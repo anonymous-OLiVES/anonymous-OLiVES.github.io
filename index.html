@@ -284,8 +284,13 @@
       <strong>S</strong>: Supervised, <strong>US</strong>: Unsupervised, <strong>UP</strong>: Unpaired. <strong>I</strong>: Image, <strong>V</strong>: Video. <strong>WE</strong>: Warp Error.
     </p>
     </div>
+    <p class="has-text-centered is-size-5" style="margin-top: 1rem; color: #6b6b6b;">
+      <strong>Qualitative results of LLVE methods trained on OLiVES</strong> </p>
+    <p style="margin-top: 1rem;">
+    <img src="images/LLVE_qualitative.jpg" style="width:100%;; display:block; margin:auto;">
+    </p>
 
-    <h3 class="title is-5" style="margin-top: 2rem;">Video Object Segmentation</h3>
+    <h3 class="title is-5" style="margin-top: 3rem;">Video Object Segmentation</h3>
     <div class="content has-text-justified">
       <p>
         We benchmark recent semi-supervised VOS methods including <strong>STCN</strong>, <strong>AOT</strong>, <strong>De-AOT</strong>, <strong>XMem</strong>, and <strong>Cutie</strong>, evaluated with the standard <strong>J</strong>, <strong>F</strong>, and <strong>J&amp;F</strong> metrics. Each model is finetuned on our train set for 30,000 iterations with batch size 8 and learning rate 1&times;10<sup>&minus;4</sup>, starting from the off-the-shelf weights trained on DAVIS&nbsp;2017 and YouTube-VOS. We also evaluate on the LLE-VOS validation set to demonstrate the generalisation of our training data across low-light benchmarks.
@@ -325,12 +330,16 @@
       </table>
     </div>
     </div>
+    <p class="has-text-centered is-size-5" style="margin-top: 1rem; color: #6b6b6b;">
+      <strong>Qualitative comparison of Cutie on an example video from MOSEv2 </strong> </p>
+      <p class="has-text-centered is-size-6" style="margin-bottom: 1rem; color: #6b6b6b;"> (Left) the first frame with the input masks. (Right) Crops of segmentation outputs for Cutie with various training data. </p>
+    <p style="margin-top: 1rem;">
+    <img src="images/mosev2-val-lowlight-comparison.jpg" style="width:100%;; display:block; margin:auto;">
+    </p>
   </div>
-</section>
 
-<section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Two-Stage Pipeline: LLVE&nbsp;+&nbsp;VOS</h2>
+    <h3 class="title is-5" style="margin-top: 3rem;">Two-Stage Pipeline: LLVE&nbsp;+&nbsp;VOS</h3>
     <div class="content has-text-justified">
       <p>
         We further evaluate the VOS performance of LLVE methods trained on OLiVES within a <strong>two-stage pipeline</strong>, where enhancement is applied as a pre-processing step before inference with a pre-trained VOS model. We use <strong>Cutie</strong> with off-the-shelf weights for segmentation after enhancement. Evaluation on the LLE-VOS validation set assesses the effectiveness of our training data for LLVE: every LLVE model trained on OLiVES yields a clear improvement over the Cutie-only baseline, demonstrating that OLiVES enhancement transfers across datasets.
